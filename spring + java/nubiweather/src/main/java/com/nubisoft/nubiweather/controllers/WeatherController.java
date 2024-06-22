@@ -1,12 +1,13 @@
 package com.nubisoft.nubiweather.controllers;
 
-import com.nubisoft.nubiweather.models.ForecastRecord;
-import com.nubisoft.nubiweather.models.WeatherRecord;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.nubisoft.nubiweather.models.ForecastRecord;
+import com.nubisoft.nubiweather.models.WeatherRecord;
+import com.nubisoft.nubiweather.service.WeatherService;
 
 @RestController
 @RequestMapping("/api")
