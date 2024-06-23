@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.nubisoft.nubiweather.models.ForecastLocationRecord;
-import com.nubisoft.nubiweather.models.ForecastRecord;
+import com.nubisoft.nubiweather.models.ForecastCityRecord;
+import com.nubisoft.nubiweather.models.ForecastResponse;
 import com.nubisoft.nubiweather.models.WeatherRecord;
 import com.nubisoft.nubiweather.models.WeatherResponse;
 
@@ -32,13 +32,13 @@ public class WeatherService {
         return new WeatherRecord(List.of(gliwiceResponse, hamburgResponse));
     }
 
-    public ForecastRecord getForecastWeather() {
+    public ForecastCityRecord getForecastWeather() {
         String gliwiceUrl = baseUrl + "forecast.json?key=" + apiKey + "&q=Gliwice&days=7";
         String hamburgUrl = baseUrl + "forecast.json?key=" + apiKey + "&q=Hamburg&days=7";
 
-        ForecastLocationRecord gliwiceResponse = restTemplate.getForObject(gliwiceUrl, ForecastLocationRecord.class);
-        ForecastLocationRecord hamburgResponse = restTemplate.getForObject(hamburgUrl, ForecastLocationRecord.class);
+        ForecastResponse gliwiceResponse = restTemplate.getForObject(gliwiceUrl, ForecastResponse.class);
+        ForecastResponse hamburgResponse = restTemplate.getForObject(hamburgUrl, ForecastResponse.class);
 
-        return new ForecastRecord(List.of(gliwiceResponse, hamburgResponse));
+        return new ForecastCityRecord(List.of(gliwiceResponse, hamburgResponse));
     }
 }
