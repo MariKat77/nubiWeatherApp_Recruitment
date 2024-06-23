@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nubisoft.nubiweather.models.ForecastRecord;
+import com.nubisoft.nubiweather.models.ForecastCityRecord;
 import com.nubisoft.nubiweather.models.WeatherRecord;
 import com.nubisoft.nubiweather.service.WeatherService;
 
@@ -22,7 +22,7 @@ public class WeatherController {
     }
 
     @GetMapping("/forecast-weather")
-    public ForecastRecord getForecastWeather() {
+    public ForecastCityRecord getForecastWeather() {
         return weatherService.getForecastWeather();
     }
 }
