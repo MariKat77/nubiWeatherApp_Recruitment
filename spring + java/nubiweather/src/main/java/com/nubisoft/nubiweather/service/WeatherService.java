@@ -1,5 +1,6 @@
 package com.nubisoft.nubiweather.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,9 @@ public class WeatherService {
     @Value("${weatherapi.baseurl}")
     private String baseUrl;
 
+    private final HashMap<String, WeatherRecord> realtimeWeatherCache = new HashMap<>();
+    private final HashMap<String, ForecastCityRecord> forecastWeatherCache = new HashMap<>();
+
     private RestTemplate restTemplate = new RestTemplate();
 
     public WeatherRecord getRealtimeWeather() {
@@ -28,6 +32,9 @@ public class WeatherService {
 
         WeatherResponse gliwiceResponse = restTemplate.getForObject(gliwiceUrl, WeatherResponse.class);
         WeatherResponse hamburgResponse = restTemplate.getForObject(hamburgUrl, WeatherResponse.class);
+
+        String time = gliwiceResponse.location().localtime();  //key to HashMap
+        realtimeWeatherCache.put(time, new WeatherRecord(List.of(gliwiceResponse, hamburgResponse)));
 
         return new WeatherRecord(List.of(gliwiceResponse, hamburgResponse));
     }
@@ -38,6 +45,9 @@ public class WeatherService {
 
         ForecastResponse gliwiceResponse = restTemplate.getForObject(gliwiceUrl, ForecastResponse.class);
         ForecastResponse hamburgResponse = restTemplate.getForObject(hamburgUrl, ForecastResponse.class);
+
+        String time = gliwiceResponse.location().localtime();  //key to HashMap
+        forecastWeatherCache.put(time, new ForecastCityRecord(List.of(gliwiceResponse, hamburgResponse)));
 
         return new ForecastCityRecord(List.of(gliwiceResponse, hamburgResponse));
     }
