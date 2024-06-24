@@ -13,9 +13,13 @@ This project is a simple API that uses [WeatherAPI.com](https://www.weatherapi.c
 - `/api/realtime-weather` - returns current weather in Gliwice and Hamburg
 - `/api/forecast-weather` - returns forecast for next seven days in Gliwice and Hamburg (numer of forecast days can be change in WeatherService.java in method getForecastWeather())
 
+All responses of API from this 2 edpoints are saving in cache (HashMap), in service class are implemented 2 methods which return desired response from HashMap. The key of HashMap is local time from Gliwice response.
+
 API returns only information in metrics units, but it can be change with loging to the [WeatherAPI.com](https://www.weatherapi.com/login.aspx) and going to settings and change the fields which are returning from this API.
 
 If you have already your account on this site [WeatherAPI.com](https://www.weatherapi.com/) and you have your own API key you can switch it to your own key in the file `spring + java\nubiweather\src\main\resources\application.properties`.
+
+In folder test are implemented 4 tests which checks responses of 4 methods implemented in service class (WeatherService).
 
 ## Technologies
 
