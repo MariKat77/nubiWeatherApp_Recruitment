@@ -13,7 +13,7 @@ This project is a simple API that uses [WeatherAPI.com](https://www.weatherapi.c
 - `/api/realtime-weather` - returns current weather in Gliwice and Hamburg
 - `/api/forecast-weather` - returns forecast for next seven days in Gliwice and Hamburg (numer of forecast days can be change in WeatherService.java in method getForecastWeather())
 
-All responses of API from this 2 edpoints are saving in cache (HashMap), in service class are implemented 2 methods which return desired response from HashMap. The key of HashMap is local time from Gliwice response.
+All responses of API from this 2 endpoints are saving in cache (HashMap), in service class are implemented 2 methods which return desired response from HashMap. The key of HashMap is local time from Gliwice response.
 
 API returns only information in metrics units, but it can be change with loging to the [WeatherAPI.com](https://www.weatherapi.com/login.aspx) and going to settings and change the fields which are returning from this API.
 
