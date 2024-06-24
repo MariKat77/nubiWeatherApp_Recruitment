@@ -42,4 +42,20 @@ class NubiweatherApplicationTests {
         assertNotNull(hamburgForecastName);
         assertEquals("Hamburg", hamburgForecastName);
     }
+
+    @Test
+    public void testGetRealtimeWeatherCache() {
+        WeatherRecord response = weatherService.getRealtimeWeather();
+        WeatherRecord cache = weatherService.getRealtimeWeatherCache(response.weatherRecord().get(0).location().localtime());
+        assertNotNull(cache);
+        assertEquals(response, cache);
+    }
+
+    @Test
+    public void testGetForecastWeatherCache() {
+        ForecastCityRecord response = weatherService.getForecastWeather();
+        ForecastCityRecord cache = weatherService.getForecastWeatherCache(response.forecastRecord().get(0).location().localtime());
+        assertNotNull(cache);
+        assertEquals(response, cache);
+    }
 }

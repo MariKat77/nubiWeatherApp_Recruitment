@@ -51,4 +51,12 @@ public class WeatherService {
 
         return new ForecastCityRecord(List.of(gliwiceResponse, hamburgResponse));
     }
+
+    public WeatherRecord getRealtimeWeatherCache(String key) {
+        return realtimeWeatherCache.get(key);
+    }
+
+    public ForecastCityRecord getForecastWeatherCache(String key) {
+        return forecastWeatherCache.get(key);
+    }
 }
